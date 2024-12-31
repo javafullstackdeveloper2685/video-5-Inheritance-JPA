@@ -81,3 +81,57 @@ public class WarriorEntity extends PlayerEntity {
 }
 
 ````
+## 📂 Пример кода JPA inheritance strategy "SINGLE_TABLE"
+
+### Базовый класс
+
+```java
+@Entity
+@Table(name="player_entity")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name ="player_type", discriminatorType = DiscriminatorType.STRING)
+public abstract class PlayerEntity {
+    @Id
+    @GeneratedValue
+    private UUID uuid;
+    private int level;
+    private int experience;
+    private int healthPower;
+    private int attackPower;
+}
+```
+### Дочерний класс 1
+
+````java
+@Entity
+@DiscriminatorValue("MAGE")
+public class MageEntity extends PlayerEntity {
+  
+}
+
+````
+
+### Дочерний класс 2
+
+````java
+@Entity
+@DiscriminatorValue("WARRIOR")
+public class WarriorEntity extends PlayerEntity {
+}
+
+````
+
+### SQL скрипт создания таблицы player_entity
+
+````sql
+CREATE TABLE player_entity (
+    uuid BINARY(16) NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    player_type VARCHAR(31) NOT NULL,
+    attack_power INT,
+    health_power INT,
+    exp INT,
+    lvl INT,
+    PRIMARY KEY (uuid)
+);
+````
