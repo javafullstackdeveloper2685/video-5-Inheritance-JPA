@@ -51,24 +51,23 @@
 
 ```java
 @MappedSuperclass
-public abstract class GamerEntity {
+public abstract class PlayerEntity {
     @Id
     @GeneratedValue
     private UUID uuid;
     private int level;
     private int experience;
+    private int healthPower;
+    private int attackPower;
 }
 ```
 ### Дочерний класс 1
 
 ````java
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "player_type", discriminatorType = DiscriminatorType.STRING)
-@DiscriminatorValue("Mage")
-public class MageEntity extends GamerEntity {
-    private int healthPower;
-    private int attackPower;
+@Table(name = "mage")
+public class MageEntity extends PlayerEntity {
+  
 }
 
 ````
@@ -77,10 +76,8 @@ public class MageEntity extends GamerEntity {
 
 ````java
 @Entity
-@DiscriminatorValue("Warrior")
-public class WarriorEntity extends GamerEntity {
-    private int healthPower;
-    private int attackPower;
+@Table(name = "warrior")
+public class WarriorEntity extends PlayerEntity {
 }
 
 ````
