@@ -1,11 +1,12 @@
 package Entities;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.util.UUID;
 
-@MappedSuperclass
+@Entity
+@Table(name="player_entity")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name ="player_type", discriminatorType = DiscriminatorType.STRING)
 public abstract class PlayerEntity {
     @Id
     @Column(name = "uuid", nullable = false, updatable = false, unique = true, columnDefinition = "BINARY(16)")
