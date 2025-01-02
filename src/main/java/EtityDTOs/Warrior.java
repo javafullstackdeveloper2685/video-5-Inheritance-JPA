@@ -30,9 +30,10 @@ public class Warrior extends Gamer {
         this.uuid = warriorEntity.getUuid();
         this.healthPower = warriorEntity.healthPower();
         this.attackPower = warriorEntity.attackPower();
+        System.out.println("Warrior was loaded: " + toString());
     }
 
-    public WarriorEntity createEntity(Warrior warrior) {
+    public WarriorEntity createEntity() {
         WarriorEntity warriorEntity = new WarriorEntity();
         warriorEntity.setUuid(uuid);
         warriorEntity.setLevel(this.level);
@@ -109,12 +110,12 @@ public class Warrior extends Gamer {
     @Override
     public String toString() {
         return "Warrior{" +
-                "name='" + name + '\'' +
+                "uuid=" + uuid +
+                ", name='" + name + '\'' +
                 ", healthPower=" + healthPower +
                 ", attackPower=" + attackPower +
                 ", experience=" + experience +
                 ", level=" + level +
-                ", uuid=" + uuid +
                 '}';
     }
 }

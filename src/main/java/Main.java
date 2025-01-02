@@ -103,8 +103,8 @@ public class Main {
      */
     public static void persistPlayers(EntityManager em, Warrior warrior, Mage mage) {
         em.getTransaction().begin();
-        em.merge(warrior.createEntity(warrior));
-        em.merge(mage.createEntity(mage));
+        em.merge(warrior.createEntity());
+        em.merge(mage.createEntity());
         em.getTransaction().commit();
         System.out.println("Персонажи успешно сохранены в базу данных.");
     }

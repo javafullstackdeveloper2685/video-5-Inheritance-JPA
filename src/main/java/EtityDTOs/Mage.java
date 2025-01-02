@@ -27,15 +27,16 @@ public class Mage extends Gamer {
     }
 
     public Mage(MageEntity mageEntity) {
+        this.uuid = mageEntity.getUuid();
         this.name = mageEntity.getName();
         this.experience = mageEntity.getExperience();
         this.level = mageEntity.getLevel();
-        this.uuid = mageEntity.getUuid();
         this.healthPower = mageEntity.healthPower();
         this.attackPower = mageEntity.attackPower();
+        System.out.println("Mage was loaded: " + toString());
     }
 
-    public MageEntity createEntity(Mage mage) {
+    public MageEntity createEntity() {
         MageEntity mageEntity = new MageEntity();
         mageEntity.setUuid(uuid);
         mageEntity.setLevel(this.level);
@@ -112,12 +113,12 @@ public class Mage extends Gamer {
     @Override
     public String toString() {
         return "Mage{" +
-                "name='" + name + '\'' +
+                "uuid=" + uuid +
+                ", name='" + name + '\'' +
                 ", healthPower=" + healthPower +
                 ", attackPower=" + attackPower +
                 ", experience=" + experience +
                 ", level=" + level +
-                ", uuid=" + uuid +
                 '}';
     }
 }
